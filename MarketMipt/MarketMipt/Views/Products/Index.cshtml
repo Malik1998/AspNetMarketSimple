@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MarketMipt.Models.Products>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    @Html.AntiForgeryToken()
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.count)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.image)
+            </th>
+            <th>
+                Oder
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.count)
+            </td>
+            <td>
+                <img src="@item.image" widht="100px" height="100px"/>
+            </td>
+            <td>
+                @Html.AntiForgeryToken()
+                <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Oder" asp-route-id="@item.id">Oder</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
